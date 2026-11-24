@@ -15,8 +15,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: ffmpeg on runner (video tests skip if missing)
-        run: ffmpeg -version | head -1 || echo "no ffmpeg"
+      - name: install ffmpeg (video tests skip if this fails)
+        timeout-minutes: 4
+        continue-on-error: true
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends ffmpeg
+          ffmpeg -version | head -1
       - name: lint + private-data scan + tests
         timeout-minutes: 5
         run: node tests/run.mjs
