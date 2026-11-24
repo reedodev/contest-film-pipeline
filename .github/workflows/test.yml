@@ -1,0 +1,22 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: ffmpeg on runner (video tests skip if missing)
+        run: ffmpeg -version | head -1 || echo "no ffmpeg"
+      - name: lint + private-data scan + tests
+        timeout-minutes: 5
+        run: node tests/run.mjs

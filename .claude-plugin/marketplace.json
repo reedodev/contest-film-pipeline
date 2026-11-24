@@ -1,0 +1,14 @@
+{
+  "name": "contest-film-pipeline",
+  "owner": { "name": "Reedo" },
+  "metadata": { "version": "1.0.0", "description": "AI film and image contest entries, from rules to submission, with a lessons table learned from real failed and fixed entries." },
+  "plugins": [
+    {
+      "name": "contest-film-pipeline",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/contest-film-pipeline"],
+      "description": "Contest AI film/image pipeline: rules check, dialogue-first script with a clear opening, character and location sheets, three.js previz, 3-second prompt rows, unlimited-slot generation ledger, upscale/grade/captions, 1-second scene sheet, short-shot and length checks, first-time-viewer review, submission-form traps and publishing rules. 72 lessons from real entries."
+    }
+  ]
+}
